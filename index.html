@@ -3,15 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Özel Eğitim Ders Notları</title>
+    <title>Özel Eğitim Final Notları</title>
     <style>
         :root {
-            --primary-color: #2c3e50;
+            --primary-color: #2c3e50; /* Koyu Lacivert */
             --secondary-color: #34495e;
-            --accent-color: #e74c3c;
-            --bg-color: #f4f7f6;
-            --text-color: #333;
+            --accent-color: #c0392b; /* Koyu Kırmızı - Vurgular için */
+            --bg-color: #fdfdfd;
+            --text-color: #2c3e50;
             --white: #ffffff;
+            --light-gray: #ecf0f1;
         }
 
         * {
@@ -24,7 +25,8 @@
         body {
             background-color: var(--bg-color);
             color: var(--text-color);
-            line-height: 1.6;
+            line-height: 1.7;
+            font-size: 16px;
         }
 
         /* --- Header & Navigation --- */
@@ -36,7 +38,7 @@
             width: 100%;
             top: 0;
             z-index: 1000;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
         }
 
         .navbar {
@@ -48,144 +50,169 @@
         }
 
         .logo {
-            font-size: 1.5rem;
-            font-weight: bold;
+            font-size: 1.4rem;
+            font-weight: 700;
             color: var(--white);
             text-decoration: none;
+            text-transform: uppercase;
+            letter-spacing: 1px;
         }
 
-        /* Hamburger Menu Icon */
+        /* Hamburger Menu */
         .hamburger {
             display: none;
             cursor: pointer;
             flex-direction: column;
-            gap: 5px;
+            gap: 6px;
+            z-index: 1001;
         }
 
         .bar {
-            width: 25px;
+            width: 30px;
             height: 3px;
             background-color: var(--white);
             transition: 0.3s;
+            border-radius: 3px;
         }
 
         .nav-links {
             display: flex;
             list-style: none;
-            gap: 20px;
+            gap: 25px;
         }
 
         .nav-links li a {
             color: var(--white);
             text-decoration: none;
             font-weight: 500;
-            transition: color 0.3s;
+            font-size: 0.95rem;
+            transition: opacity 0.3s;
         }
 
         .nav-links li a:hover {
-            color: var(--accent-color);
+            opacity: 0.8;
         }
 
         /* --- Main Content --- */
         main {
-            margin-top: 80px; /* Header height padding */
+            margin-top: 80px;
             padding: 20px;
-            max-width: 1000px;
+            max-width: 900px;
             margin-left: auto;
             margin-right: auto;
         }
 
         .section-title {
-            border-bottom: 3px solid var(--accent-color);
-            padding-bottom: 10px;
-            margin-bottom: 20px;
-            margin-top: 40px;
-            color: var(--primary-color);
+            color: var(--accent-color);
+            border-left: 5px solid var(--accent-color);
+            padding-left: 15px;
+            margin-top: 50px;
+            margin-bottom: 25px;
+            font-size: 1.8rem;
+            font-weight: 700;
         }
 
         .card {
             background: var(--white);
-            padding: 25px;
-            margin-bottom: 20px;
-            border-radius: 8px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
-            transition: transform 0.2s;
-        }
-
-        .card:hover {
-            transform: translateY(-2px);
+            border: 1px solid #e0e0e0;
+            padding: 30px;
+            margin-bottom: 25px;
+            border-radius: 10px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.02);
         }
 
         .card h3 {
-            color: var(--secondary-color);
+            color: var(--primary-color);
             margin-bottom: 15px;
-            font-size: 1.3rem;
+            font-size: 1.4rem;
+            border-bottom: 2px solid var(--light-gray);
+            padding-bottom: 10px;
         }
 
         .card h4 {
-            color: var(--accent-color);
-            margin-top: 15px;
-            margin-bottom: 8px;
+            color: var(--secondary-color);
+            margin-top: 20px;
+            margin-bottom: 10px;
             font-size: 1.1rem;
+            font-weight: 700;
+        }
+
+        .card p {
+            margin-bottom: 15px;
+            text-align: justify;
         }
 
         .card ul {
-            list-style-position: inside;
-            margin-left: 10px;
+            list-style-type: none; /* Standart mermileri kaldır */
+            margin-left: 5px;
         }
 
         .card li {
-            margin-bottom: 8px;
+            margin-bottom: 10px;
+            padding-left: 20px;
+            position: relative;
         }
 
-        .highlight {
-            background-color: #fff3cd;
-            padding: 2px 5px;
-            border-radius: 4px;
+        .card li::before {
+            content: "•";
+            color: var(--accent-color);
+            font-weight: bold;
+            display: inline-block;
+            width: 1em;
+            margin-left: -1em;
         }
 
-        .note-source {
-            font-size: 0.9rem;
-            color: #7f8c8d;
+        .important-note {
+            background-color: #fff8e1;
+            border-left: 4px solid #ffc107;
+            padding: 15px;
+            margin: 15px 0;
             font-style: italic;
-            margin-top: 10px;
-            display: block;
-            text-align: right;
         }
 
-        /* --- Mobile Responsive CSS --- */
+        .exam-warning {
+            color: var(--accent-color);
+            font-weight: bold;
+            display: block;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            font-size: 0.9rem;
+        }
+
+        /* --- Mobile Responsive --- */
         @media (max-width: 768px) {
             .hamburger {
                 display: flex;
             }
 
             .nav-links {
-                position: absolute;
-                top: 70px;
-                right: 0;
+                position: fixed;
+                top: 0;
+                right: -100%;
+                height: 100vh;
+                width: 70%;
                 background-color: var(--primary-color);
-                width: 100%;
                 flex-direction: column;
+                justify-content: center;
                 align-items: center;
-                gap: 0;
-                max-height: 0;
-                overflow: hidden;
-                transition: max-height 0.3s ease-in-out;
+                transition: 0.4s ease-in-out;
+                box-shadow: -5px 0 15px rgba(0,0,0,0.2);
             }
 
             .nav-links.active {
-                max-height: 300px; /* Adjust based on menu items */
+                right: 0;
             }
 
             .nav-links li {
-                width: 100%;
-                text-align: center;
-                border-top: 1px solid rgba(255,255,255,0.1);
+                margin: 20px 0;
             }
 
             .nav-links li a {
-                display: block;
-                padding: 15px;
+                font-size: 1.2rem;
+            }
+            
+            .card {
+                padding: 20px;
             }
         }
     </style>
@@ -194,7 +221,7 @@
 
     <header>
         <nav class="navbar">
-            <a href="#" class="logo">Özel Eğitim Notları</a>
+            <a href="#" class="logo">Final Notları</a>
             
             <div class="hamburger" id="hamburger">
                 <div class="bar"></div>
@@ -203,151 +230,187 @@
             </div>
 
             <ul class="nav-links" id="nav-links">
-                <li><a href="#hoca-soyledikleri">Hocanın Söyledikleri</a></li>
-                <li><a href="#bep">BEP & Amaçlar</a></li>
-                <li><a href="#kaynastirma">Kaynaştırma</a></li>
-                <li><a href="#ogrenme-guclugu">Öğrenme Güçlüğü</a></li>
+                <li><a href="#gorme">Görme</a></li>
+                <li><a href="#isitme">İşitme</a></li>
+                <li><a href="#dil-konusma">Dil & Konuşma</a></li>
+                <li><a href="#dehb">DEHB</a></li>
+                <li><a href="#fiziksel">Fiziksel</a></li>
+                <li><a href="#diger">Diğer Notlar</a></li>
             </ul>
         </nav>
     </header>
 
     <main>
-
-        <h2 id="hoca-soyledikleri" class="section-title">Hocanın Derste Söyledikleri</h2>
-
-        <div class="card">
-            <h3>İnsan Nasıl Görür?</h3>
-            <p>Nesnelerden yansıyan ışık göz bebeğimizden girer, mercekte kırılır ve sarı nokta bölgesine düşer. Buradan sonra elektriksel iletiye çevrilir, beynin görme kısmına işlenir, analiz edilir ve insan bilincine yansıtılır.</p>
-        </div>
-
-        <div class="card">
-            <h3>Görme Yetersizliği Nedir?</h3>
-            <p>Herhangi bir nedenden ötürü görme yetisini tamamen ya da kısmen kaybetmesinden ötürü günlük hayatında sorumluluk ya da becerileri yerine getirmekte zorlanan ve üçüncü kişi yardımı ile işini yapabilen bireylerdir.</p>
-        </div>
-
-        <div class="card">
-            <h3>Dikkat Nedir?</h3>
-            <p>Bireyin bir görev ya da ilgi duyduğu bir uyarıcıyı seçebilmesi, onu diğer uyaranların etkisinden ayıklaması ve seçtiği uyaranla ilgili görevleri sonuçlandırabilmesi yeteneğidir.</p>
-        </div>
-
-        <div class="card">
-            <h3>Hiperaktivite</h3>
-            <p>Toplumsal normların oluşturduğu kalıplara göre davranılması beklenen durumlarda aşırı huzursuz olma ve bu duruma bağlı olarak ortaya çıkan aşırı hareketlilik durumudur. Davranış genellikle amaçsız, keyfi ve değişkendir.</p>
-        </div>
-
-        <div class="card">
-            <h3>Ortak Dikkat & Sembolik Oyun</h3>
-            <ul>
-                <li><strong>Ortak Dikkat:</strong> İki kişinin aynı nesneye veya olaya, birbirlerinin farkında olarak aynı anda odaklanmasıdır. Sosyal etkileşim için temeldir.</li>
-                <li><strong>Sembolik Oyun:</strong> Çocuğun bir nesneyi, onu temsil eden başka bir nesneymiş gibi kullanmasıdır (Örneğin: Muzu telefon gibi kulağına götürmek). Dil gelişimi ve zihinsel gelişim için kritiktir.</li>
-            </ul>
-        </div>
-
-        <div class="card">
-            <h3>Dopamin</h3>
-            <p>Sinirler arası iletişimi sağlayan önemli bir nörotransmitter (iletici) maddedir. Hormon olarak da görev yapar. Dikkat, motivasyon ve zevk alma mekanizmalarında etkilidir.</p>
-        </div>
-
-        <div class="card">
-            <h3>Dil Bozukluğu Olan Bireylerin Özellikleri</h3>
-            <ul>
-                <li>Anlama ve dili kullanmada zorluk yaşarlar.</li>
-                <li>Kelime dağarcıkları yaşıtlarına göre azdır.</li>
-                <li>Geç konuşmaya başlarlar.</li>
-                <li>Deyim ve atasözlerini anlamakta zorlanırlar.</li>
-                <li>Karmaşık (kompleks) cümleler kurmakta ve anlamakta güçlük çekerler.</li>
-            </ul>
-        </div>
-
-        <div class="card">
-            <h3>Pearworking (Akran Öğrenmesi/Çalışması)</h3>
-            <p>Yetersizliği olan birey ile yetersizliği olmayan bireyin eşleşmesi (çift olması) durumudur. Akranlar birbirine rol model olur. Bu yöntem tekrar etme ve deneyimleme fırsatı sunar.</p>
-        </div>
-
-        <h2 id="bep" class="section-title">BEP ve Amaçlar</h2>
-
-        <div class="card">
-            <h3>BEP (Bireyselleştirilmiş Eğitim Programı)</h3>
-            <p>Özel eğitime muhtaç olan bireylerin ilgilerine, ilgi alanlarına, performans düzeylerine ve öğrenme profillerine göre, <strong>kişiye özel</strong> hazırlanmış eğitim programlarıdır.</p>
-        </div>
-
-        <div class="card">
-            <h3>Uzun ve Kısa Dönemli Amaçlar</h3>
+        
+        <section id="gorme">
+            <h2 class="section-title">Görme Yetersizliği</h2>
             
-            <h4>Uzun Dönem (Yıllık) Amaç</h4>
-            <p>BEP kapsamında çocuğa kazandırılmak istenen nihai hedeftir.</p>
-            <p><em>Örnek:</em> "12 ayı öğretmek" veya "Adadan kurtulmak" (Metafor).</p>
+            <div class="card">
+                <h3>Tanım</h3>
+                <p>Herhangi bir nedenden ötürü görme yetisini <strong>tamamen</strong> ya da <strong>kısmen</strong> kaybetmesinden ötürü günlük hayatında sorumluluk ya da becerileri yerine getirmekte zorlanan ve 3. kişi yardımı ile işini yapabilen bireylerdir.</p>
+            </div>
 
-            <h4>Kısa Dönemli Amaç</h4>
-            <p>Uzun dönem amacına ulaşmak için gidilen küçük basamaklardır. Asıl amaca ulaşana kadar yapılanlardır.</p>
-            <p><em>Örnek:</em></p>
-            <ul>
-                <li>İlk 4 ayı söylemek,</li>
-                <li>İlk 8 ayı söylemek,</li>
-                <li>Sonra tam 12 ayı söylemek.</li>
-            </ul>
-            <p>Bunlar kısa dönemli amaçlara bölünerek nihai amaca ulaşmayı sağlar.</p>
-        </div>
+            <div class="card">
+                <h3>Nedenler</h3>
+                <ul>
+                    <li>Enfeksiyon, doku organ zedelenmesi.</li>
+                    <li>Genetik hastalıklar.</li>
+                    <li>Travma/Kazalar, şiddetli dayak yeme, trafik kazası.</li>
+                    <li>Şeker hastalığı, tansiyon.</li>
+                    <li><strong>Doğum Esnasında:</strong> Kordon dolanması ile beyne oksijen gitmemesi kaynaklı beynin görme yetisini alan kısmında hasar oluşması.</li>
+                    <li>Erken doğum.</li>
+                </ul>
+            </div>
 
-        <h2 id="kaynastirma" class="section-title">Kaynaştırma Eğitimi</h2>
+            <div class="card">
+                <h3>İnsan Nasıl Görür? (Süreç)</h3>
+                <p>Nesnelerden yansıyan ışık gözlerimize göz bebeğimizden girer:</p>
+                <ul>
+                    <li>Mercekte kırılır.</li>
+                    <li>Sarı nokta bölgesine düşer.</li>
+                    <li>Buradan sonra <strong>elektriksel iletiye</strong> çevrilir.</li>
+                    <li>Beynin görme kısmına işlenir, analiz edilir ve insan bilincine yansıtılır.</li>
+                </ul>
+                <div class="important-note">
+                    Not: Işığı toplamak için göz bebeği büyür. Bayılan kişinin göz bebeğine bakılmasının sebebi de eğer hareketlilik varsa beynin az da olsa çalıştığını anlamaktır.
+                </div>
+            </div>
 
-        <div class="card">
-            <h3>Kaynaştırma Türleri</h3>
-            <ul>
-                <li><strong>Kısmi Kaynaştırma:</strong> Öğrenci bazı dersleri özel eğitim sınıfında/özel ders gibi alır, bazılarını ise normal gelişim gösteren arkadaşlarıyla kendi sınıfında görür.</li>
-                <li><strong>Tam Zamanlı Kaynaştırma:</strong> Öğrenci tüm dersleri normal gelişim gösteren arkadaşları ile aynı sınıfta görür.</li>
-                <li><strong>Tersine Kaynaştırma:</strong> Normal gelişim gösteren bireylerin, özel gereksinimli bireylerin (örneğin otizmli bireylerin) sınıfına entegre edilmesidir. Her zaman değil, bazen etkinliklerde yapılır. Amaç akran etkileşimidir.</li>
-            </ul>
-        </div>
+            <div class="card">
+                <h3>Özellikler</h3>
+                <ul>
+                    <li>Duyu ve kas koordinasyonları görece zayıftır.</li>
+                    <li>Depresyona ve yalnızlığa meyillidirler.</li>
+                    <li>Fiziki deformasyon görülebilir.</li>
+                    <li>Kelime dağarcıkları azdır, anlamakta güçlük çekebilirler.</li>
+                </ul>
+            </div>
+        </section>
 
-        <div class="card">
-            <h3>Kaynaştırma Amaçları</h3>
-            <ul>
-                <li>Çocuklara akademik becerileri kazandırmak.</li>
-                <li>En önemlisi <strong>sosyal becerilerini</strong> geliştirmek.</li>
-                <li>Sosyal uyum becerilerine entegre olmasını sağlamak.</li>
-            </ul>
-        </div>
+        <section id="isitme">
+            <h2 class="section-title">İşitme Yetersizliği</h2>
+            <div class="card">
+                <h3>Genel Bilgiler</h3>
+                <p>İşitme duyarlılığının kısmen veya tamamen kaybından dolayı konuşmayı edinmede, dili kullanma ve iletişimde güçlük yaşama durumudur.</p>
+                <ul>
+                    <li>İşitme cihazı veya biyonik kulak (koklear implant) kullanımı yaygındır.</li>
+                    <li>Erken tanı (doğumdan hemen sonra yapılan taramalar) çok kritiktir.</li>
+                    <li>İletişim için işaret dili veya dudak okuma yöntemleri kullanılabilir.</li>
+                </ul>
+            </div>
+        </section>
 
-        <div class="card">
-            <h3>Öğretmende Olması Gerekenler & Alınacak Önlemler</h3>
-            <ul>
-                <li><strong>Akran Zorbalığı:</strong> Öğretmen akran zorbalığını engellemek için aktif rol oynamalıdır.</li>
-                <li><strong>Akran Kabulü:</strong> Özel yetenekli veya yetersizliği olan öğrencilere karşı oluşabilecek kıskançlık veya kaba kuvveti önlemek için <strong>akran kabulünü artırıcı</strong> etkinlikler yapılmalıdır.</li>
-            </ul>
-        </div>
+        <section id="dil-konusma">
+            <h2 class="section-title">Dil ve Konuşma Bozukluğu</h2>
+            
+            <div class="card">
+                <h3>Tanımlar (Sınavda Çıkabilir)</h3>
+                <p><strong>Dil Bozukluğu:</strong> Anlama ve dili kullanmada zorluk yaşanmasıdır. (Semboller, kurallar ve kullanım bilgisi ile ilgilidir).</p>
+                <p><strong>Konuşma Bozukluğu:</strong> Anlama sorunu yoktur. Sesin üretimi, akıcılığı veya sesletimi ile ilgili sorundur (Örn: Kekemelik, artikülasyon).</p>
+                <div class="important-note">Tanılama kriterleri <strong>DSM-V</strong>'e göre yapılır.</div>
+            </div>
 
-        <h2 id="ogrenme-guclugu" class="section-title">Özel Öğrenme Güçlüğü (ÖÖG)</h2>
+            <div class="card">
+                <h3>Özellikler</h3>
+                <ul>
+                    <li>Anlama ve dili kullanmada zorluk yaşarlar.</li>
+                    <li>Kelime dağarcıkları yaşıtlarına göre azdır.</li>
+                    <li>Geç konuşmaya başlarlar.</li>
+                    <li>Deyim ve atasözlerini anlamakta zorlanırlar.</li>
+                    <li>Karmaşık (kompleks) cümleler kurmakta güçlük çekerler.</li>
+                </ul>
+            </div>
+        </section>
 
-        <div class="card">
-            <h3>Özel Öğrenme Güçlüğü Türleri</h3>
-            <p>Çocuklarda tek biri görülebileceği gibi birden fazlası da aynı anda görülebilir:</p>
-            <ul>
-                <li><strong>Disleksi:</strong> Okuma bozukluğu (Harfleri karıştırma, geç okuma).</li>
-                <li><strong>Disgrafi:</strong> Yazılı anlatım bozukluğu (Yazı mekaniğinde bozukluk, yanlış kalem tutma).</li>
-                <li><strong>Diskalkuli:</strong> Matematik/Aritmetik bozukluğu (Sayıları ters yazma, işlem yapamama).</li>
-            </ul>
-            <p class="highlight">Not: Zeka geriliği değildir.</p>
-        </div>
+        <section id="dehb">
+            <h2 class="section-title">DEHB (Dikkat Eksikliği ve Hiperaktivite Bozukluğu)</h2>
+            
+            <div class="card">
+                <h3>Tanım</h3>
+                <p>Toplumsal normların oluşturduğu kalıplara göre davranılması beklenen durumlarda aşırı huzursuz olma ve aşırı hareketlilik durumudur. Davranış genellikle amaçsız, keyfi ve değişkendir.</p>
+            </div>
+
+            <div class="card" style="border-left: 5px solid var(--accent-color);">
+                <h3><span class="exam-warning">*** SINAV SORUSU OLABİLİR ***</span>Kaynaştırma Öğrencisi İçin Neler Yapılmalı?</h3>
+                <ul>
+                    <li><strong>Yardımcı Yapmak:</strong> Çocuğu öğretmenin yardımcısı yapmak (Amaç edinmesi için).</li>
+                    <li><strong>Pekiştireç:</strong> İyi bir şey yaptığında ödül vermek.</li>
+                    <li><strong>Uygun Konum:</strong> Çocuğu sınıfta dikkatinin dağılmayacağı uygun bir konuma oturtmak.</li>
+                    <li><strong>Tekrar:</strong> Her ders başı tekrar yapmak.</li>
+                    <li><strong>Fiziksel Etkinlik:</strong> Fazla hareketleri için uygun etkinlik sağlamak (Koşu gibi enerjisini atacağı şeyler).</li>
+                    <li><strong>Basit Sorular:</strong> Sorular daha basit olmalı, kompleks olmamalı.</li>
+                </ul>
+            </div>
+        </section>
+
+        <section id="fiziksel">
+            <h2 class="section-title">Fiziksel Yetersizlik</h2>
+            
+            <div class="card">
+                <h3>Tanım</h3>
+                <p>Herhangi bir nedenden dolayı kas-iskelet ve sinir sisteminde meydana gelen bozukluktan ötürü uzuvların kısmen ya da tamamen kaybı olan, günlük yaşam gereksinimlerini yerine getirmede güçlük yaşayan kişilerdir.</p>
+            </div>
+
+            <div class="card">
+                <h3>Nedenler & Kavramlar</h3>
+                <ul>
+                    <li><strong>Genetik Faktörler:</strong> Örn: Anüs açıklığı olmadan doğum.</li>
+                    <li><strong>Doğum Anormallikleri:</strong> Doğum sırasında meydana gelen sorunlar.</li>
+                    <li><strong>Ampute Etmek:</strong> İnsan vücudundaki görevini yerine getirmeyen bir uzvun/parçanın vücuttan ayrılmasıdır. (Şeker hastalığı vb. metabolik rahatsızlıklardan dolayı olabilir).</li>
+                    <li><strong>Serebral Palsi (CP):</strong> Beyin felci. Denge ve koordinasyonu kuramazlar.</li>
+                </ul>
+            </div>
+        </section>
+
+        <section id="diger">
+            <h2 class="section-title">Diğer Önemli Notlar</h2>
+
+            <div class="card">
+                <h3>Kavramlar</h3>
+                <ul>
+                    <li><strong>Dopamin:</strong> Sinirler arası iletişimi sağlayan nörotransmitter maddedir. (Önemli bir modül).</li>
+                    <li><strong>Ortak Dikkat:</strong> İki kişinin aynı nesneye odaklanması.</li>
+                    <li><strong>Sembolik Oyun:</strong> Nesneleri -mış gibi kullanma.</li>
+                    <li><strong>Pearworking (Akran Çalışması):</strong> Yetersizliği olan ve olmayan bireyin eşleşmesi. Akranlar rol model olur.</li>
+                </ul>
+            </div>
+
+            <div class="card">
+                <h3>BEP (Bireyselleştirilmiş Eğitim Programı)</h3>
+                <p>Bireyin ilgilerine, performansına ve öğrenme profiline göre <strong>kişiye özel</strong> hazırlanan programdır.</p>
+                <div style="margin-top: 10px; padding: 10px; background: #f9f9f9; border-radius: 5px;">
+                    <strong>Uzun Dönem Amaç (Nihai Hedef):</strong> "Adadan kurtulmak" veya "12 ayı öğretmek".<br>
+                    <strong>Kısa Dönem Amaç:</strong> Nihai hedefe giden basamaklar (İlk 4 ayı söylemek, sonra 8 ayı söylemek vb.).
+                </div>
+            </div>
+
+            <div class="card">
+                <h3>Kaynaştırma Türleri</h3>
+                <ul>
+                    <li><strong>Kısmi:</strong> Bazı dersler özel, bazıları normal sınıfta.</li>
+                    <li><strong>Tam Zamanlı:</strong> Tüm dersler normal sınıfta.</li>
+                    <li><strong>Tersine:</strong> Normal gelişim gösterenlerin, özel eğitim sınıfına gelmesi (Akran etkileşimi için).</li>
+                </ul>
+            </div>
+        </section>
 
     </main>
 
     <script>
-        // Hamburger Menu Toggle Functionality
+        // Hamburger Menü Kodları
         const hamburger = document.getElementById('hamburger');
         const navLinks = document.getElementById('nav-links');
-        const links = document.querySelectorAll('.nav-links li');
+        const links = document.querySelectorAll('.nav-links li a');
 
         hamburger.addEventListener('click', () => {
-            // Toggle Nav
             navLinks.classList.toggle('active');
-
-            // Hamburger Animation (X shape)
+            
+            // Hamburger Animasyonu
             const bars = document.querySelectorAll('.bar');
-            if(navLinks.classList.contains('active')){
-                bars[0].style.transform = "rotate(-45deg) translate(-5px, 6px)";
+            if(navLinks.classList.contains('active')) {
+                bars[0].style.transform = "rotate(-45deg) translate(-6px, 6px)";
                 bars[1].style.opacity = "0";
-                bars[2].style.transform = "rotate(45deg) translate(-5px, -6px)";
+                bars[2].style.transform = "rotate(45deg) translate(-6px, -6px)";
             } else {
                 bars[0].style.transform = "none";
                 bars[1].style.opacity = "1";
@@ -355,14 +418,16 @@
             }
         });
 
-        // Close menu when a link is clicked (Mobile UX)
+        // Linke tıklayınca menüyü kapat
         links.forEach(link => {
             link.addEventListener('click', () => {
-                navLinks.classList.remove('active');
-                const bars = document.querySelectorAll('.bar');
-                bars[0].style.transform = "none";
-                bars[1].style.opacity = "1";
-                bars[2].style.transform = "none";
+                if(window.innerWidth <= 768) {
+                    navLinks.classList.remove('active');
+                    const bars = document.querySelectorAll('.bar');
+                    bars[0].style.transform = "none";
+                    bars[1].style.opacity = "1";
+                    bars[2].style.transform = "none";
+                }
             });
         });
     </script>
